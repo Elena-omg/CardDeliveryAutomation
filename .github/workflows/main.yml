@@ -26,4 +26,12 @@ jobs:
         # Запускаем автотесты
         # Для проектов на базе Selenide необходимо добавить параметр для запуска браузера
         # в headless режиме -Dselenide.headless=true, параметр --info должен остаться
-        run: ./gradlew test --info  
+        run: ./gradlew test --info -Dselenide.headless=true
+
+      - name: Upload Report
+        # ДОБАВЛЯЕМ ЭТОТ БЛОК ТУТ:
+        if: always() 
+        uses: actions/upload-artifact@v4
+        with:
+          name: report
+          path: build/reports/tests/test
