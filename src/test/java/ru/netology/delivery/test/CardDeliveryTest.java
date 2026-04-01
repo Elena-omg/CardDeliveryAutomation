@@ -51,7 +51,8 @@ class CardDeliveryTest {
                 .shouldHave(Condition.text("У вас уже запланирована встреча на другую дату. Перепланировать?"));
 
         // Нажимаем кнопку "Перепланировать" во всплывающем окне
-        $("[data-test-id=replan-notification] button").click();
+        // Вместо обычного .click() по кнопке
+        $("[data-test-id='replan-notification'] .button").shouldBe(Condition.visible).click();
 
         // 4. Финальная проверка сообщения об успехе с новой датой
         $("[data-test-id=success-notification]")

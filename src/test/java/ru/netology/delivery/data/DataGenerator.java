@@ -45,10 +45,10 @@ public class DataGenerator {
         private Registration() {
         }
 
-        // Основной метод, который создает готового пользователя
         public static UserInfo generateUser(String locale) {
             faker = new Faker(new Locale(locale));
-            return new UserInfo(generateCity(faker), generateName(faker), generatePhone(faker));
+            // УБИРАЕМ faker из скобок у generateCity()
+            return new UserInfo(generateCity(), generateName(faker), generatePhone(faker));
         }
     }
 
