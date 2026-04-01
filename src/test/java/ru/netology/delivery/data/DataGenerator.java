@@ -18,8 +18,12 @@ public class DataGenerator {
     }
 
     // Метод для выбора города из списка (так надежнее, чем просто Faker)
-    public static String generateCity(Faker faker) {
-        var cities = new String[]{"Москва", "Санкт-Петербург", "Новосибирск", "Екатеринбург", "Нижний Новгород", "Казань", "Челябинск", "Омск", "Самара"};
+    public static String generateCity() {
+        var cities = new String[]{
+                "Москва", "Санкт-Петербург", "Новосибирск", "Екатеринбург",
+                "Нижний Новгород", "Казань", "Челябинск", "Омск", "Самара",
+                "Ростов-на-Дону", "Уфа", "Красноярск", "Воронеж", "Пермь", "Волгоград"
+        };
         return cities[new Random().nextInt(cities.length)];
     }
 
