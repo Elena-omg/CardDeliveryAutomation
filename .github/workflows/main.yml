@@ -4,31 +4,23 @@ on: [push, pull_request]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4 # Рекомендую обновить до v4
+
       - name: Set up JDK 11
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v4
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Run SUT (System Under Test)
-        run: java -jar artifacts/app-replan-delivery.jar & # Символ & запускает в фоне
-        
-      - name: Run Tests
-        run: ./gradlew test -Dselenide.headless=true # Запуск в headless режиме обязательно!
+
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-      - name: Start SUT
-        # Запускаем SUT,
-        # имя файла SUT будет отличаться в каждой задаче.
-        # & означает, что в фоновом режиме не блокируем терминал для запуска тестов, 
-        # обязательно должен быть для запуска SUT в CI
-        run: java -jar ./artifacts/app-mbank.jar &
-      - name: Build with Gradle
-        # Запускаем автотесты
-        # Для проектов на базе Selenide необходимо добавить параметр для запуска браузера
-        # в headless режиме -Dselenide.headless=true, параметр --info должен остаться
-        run: ./gradlew test --info  
+
+      - name: Run SUT (System Under Test)
+        
+        run: java -jar ./artifacts/app-replan-delivery.jar &
+
+      - name: Run Tests
+      
+        run: ./gradlew test --info -Dselenide.headless=true
