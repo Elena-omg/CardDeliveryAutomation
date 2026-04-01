@@ -24,7 +24,7 @@ jobs:
         run: java -jar ./artifacts/app-mbank.jar &
       - name: Wait for SUT to be ready
         # Даем приложению 15 секунд, чтобы оно успело занять порт 9999
-        run: sleep 15
+        run: sleep 30
       - name: Build with Gradle
         # Запускаем автотесты
         # Для проектов на базе Selenide необходимо добавить параметр для запуска браузера
