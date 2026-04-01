@@ -14,6 +14,11 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+      - name: Run SUT (System Under Test)
+        run: java -jar artifacts/app-replan-delivery.jar & # Символ & запускает в фоне
+        
+      - name: Run Tests
+        run: ./gradlew test -Dselenide.headless=true # Запуск в headless режиме обязательно!
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Start SUT
